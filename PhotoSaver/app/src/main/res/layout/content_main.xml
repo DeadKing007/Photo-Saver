@@ -7,12 +7,16 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    android:layout_margin="9dp"
+    tools:showIn="@layout/activity_main"
+    >
 
     <ImageView
         android:id="@+id/Image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/back5"
         android:layout_weight="80"/>
     <Button
         android:id="@+id/Camera"
@@ -26,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="Save AS"
+        android:text="@string/save_as"
         android:textSize="22sp"/>
 
 </LinearLayout>

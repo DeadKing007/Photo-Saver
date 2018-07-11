@@ -24,29 +24,22 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Save As");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Name=findViewById(R.id.Name);
         Save=findViewById(R.id.Save);
 
 
         Save.setOnClickListener(this);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
     public void onClick(View view) {
         int id=view.getId();
         if (id==R.id.Save){
-            String name=Name.getText().toString();
+            String name=Name.getText().toString().toUpperCase();
+           // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+
             if (name.isEmpty()){
 
                 Toast.makeText(this, "Enter name", Toast.LENGTH_SHORT).show();

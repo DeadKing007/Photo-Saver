@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back2"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".CategoryActivity"
     tools:showIn="@layout/activity_category">
@@ -17,9 +18,11 @@
         android:layout_marginTop="113dp"
         android:ems="10"
         android:gravity="center_horizontal"
-        android:inputType="textPersonName"
         android:hint="@string/enter_category"
-        android:textSize="22sp" />
+        android:textColor="#FFFFFF"
+        android:inputType="textPersonName"
+        android:textSize="22sp"
+        android:textColorHint="#FFFFFF"/>
 
     <Button
         android:id="@+id/Save"
@@ -29,7 +32,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="216dp"
         android:text="@string/save"
-        android:textSize="22sp"/>
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:background="#512DA8"/>
 
 
 </RelativeLayout>
