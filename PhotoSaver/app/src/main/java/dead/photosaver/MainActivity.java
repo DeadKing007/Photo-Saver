@@ -1,8 +1,14 @@
 package dead.photosaver;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,8 +19,9 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button Capture,Saveas;
-    ImageView image;
+    private Button Capture,Saveas;
+    private ImageView image;
+    private final int RequestCode=1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        image=findViewById(R.id.Image);
+        Capture=findViewById(R.id.Camera);
+        Saveas=findViewById(R.id.SaveAs);
+
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,5 +67,41 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    
+
+    //checking if camera is available on device or not
+
+    private boolean isCameraAvailable(){
+
+       return getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
+    }
+
+    //  Checking For Permissions and taking Permissions
+
+    private boolean isMarshmellow(){
+
+        return Build.VERSION.SDK_INT>=Build.VERSION_CODES.M;
+    }
+    private boolean checkPermissionGranted(){
+
+       int check= ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+       return check== PackageManager.PERMISSION_GRANTED;
+    }
+    private void AskPermission(){
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},RequestCode);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode==RequestCode &&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+
+            //permission granted
+        }
+
     }
 }
